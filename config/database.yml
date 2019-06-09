@@ -49,7 +49,7 @@ test:
 #
 production:
   <<: *default
-  database: attendance_production
+  database: heroku_8cd4e5bb3eaf087
   username: b26a75c16cde5f
   password: <%= ENV['DATABASE_PASSWORD'] %>
   host: us-cdbr-iron-east-02.cleardb.net

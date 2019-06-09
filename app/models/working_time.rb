@@ -1,4 +1,6 @@
 class WorkingTime < ApplicationRecord
+  validates :date, uniqueness: true
+
   def self.start
     create(date: Time.now, start_at: Time.now)
   end

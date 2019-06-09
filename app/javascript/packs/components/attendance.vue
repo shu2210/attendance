@@ -1,11 +1,14 @@
 <template>
-  <div class="row">
-    <div class="col s12">
-      <div class="card center-align">
-        <div class="card-content">
-          <time class="current-time">{{ current_time | timeFormat }}</time>
-          <button class="waves-effect waves-light btn" v-on:click="startWorkingTime">出勤</button>
-          <button class="waves-effect waves-light btn">退勤</button>
+  <div>
+    <flash-message class="myCustomClass"></flash-message>
+    <div class="row">
+      <div class="col s12">
+        <div class="card center-align">
+          <div class="card-content">
+            <time class="current-time">{{ current_time | timeFormat }}</time>
+            <button class="waves-effect waves-light btn" v-on:click="startWorkingTime">出勤</button>
+            <button class="waves-effect waves-light btn" v-on:click="endWorkingTime">退勤</button>
+          </div>
         </div>
       </div>
     </div>
@@ -35,6 +38,14 @@ export default {
   methods: {
     startWorkingTime: function () {
       axios.post('/working/start').then((response) => {
+        this.flashSuccess('出勤しました!');
+      }, (error) => {
+        console.log(error);
+      });
+    },
+    endWorkingTime: function () {
+      axios.post('/working/end').then((response) => {
+        this.flashSuccess('退勤しました!');
       }, (error) => {
         console.log(error);
       });

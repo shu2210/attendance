@@ -3,6 +3,11 @@ class WorkingTimesController < ApplicationController
 
   def index; end
 
+  def list
+    list = WorkingTime.all
+    render json: { logs: list }
+  end
+
   def start
     WorkingTime.start
   end
